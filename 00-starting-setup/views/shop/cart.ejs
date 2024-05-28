@@ -1,0 +1,90 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/err.css">
+    </head>
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (err) { %>
+                <div id="errorModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Ошибка</h2>
+                        <p><%= errorMessage %></p>
+                    </div>
+                </div>
+                <script src="/js/err.js"></script>
+            <% } %>
+            <div class="form-container">
+                <button id="toggleFormButton"  class="btn">Открыть форму для заготовок</button>
+                <form class="product-form hidden" id="productForm" action="/admin/<% if(!editing) { %>add-product-cart<% } else { %>edit-product <% } %>" method="POST">
+                    <div class="form-control">
+                        <label for="width">Ширина(мм):</label>
+                        <input type="number" id="width" name="width" step="1" min="1" max="8000" value="<% if(!editing) { %>0<% } else { %><%=products[0].width %><% } %>" title="Заполни меня" required>
+                    </div>
+                    <div class="form-control">
+                        <label for="height">Высота(мм):</label>
+                        <input type="number" id="height" name="height" step="1" min="1" max="8000" value="<% if(!editing) { %>0<% } else { %><%=products[0].height %><% } %>" title="Заполни меня" required>
+                    </div>
+                    <div class="form-control">
+                        <label for="quantity">Количество(шт):</label>
+                        <input type="number" id="quantity" name="quantity" step="1"  min="1" max="50" value="<% if(!editing) { %>0<% } else { %><%=products[0].quantity %><% } %>" title="Заполни меня" required>
+                    </div>
+                    <div class="form-control">
+                        <label for="description">Комментарий</label>
+                        <textarea name="description" id="description" rows="3" maxlength="255" placeholder="Введите комментарий..."><% if(!editing) { %><% } else { %><%=products[0].description %><% } %></textarea>
+                    </div>
+                    <input type="hidden" name="materialId" value="<% if(!editing) { %><% } else { %><%=products[0].id %><% } %>">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn" type="submit"><% if(!editing) { %>Добавить заготовку<% } else { %>Изменить заготовку<% } %></button>
+                </form>
+            </div>
+            <br>
+            <% if (products.length > 0) { %>
+                <h1><% if(!editing) { %>Таблица данных заготовок<% } else { %>Таблица данных заготовки<% } %></h1>
+                <table class="cart__item-list">
+                    <thead>
+                        <tr>
+                            <th>Ширина(мм)</th>
+                            <th>Высота(мм)</th>
+                            <th>Количетсво(шт)</th>
+                            <th>Дейтсвия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(p => { %>
+                            <tr class="cart__item">
+                                <td><%= p.width %></td>
+                                <td><%= p.height %></td> 
+                                <td><%= p.quantity %></td>
+                                <td>
+                                    <form action="/admin/cart-delete-item-material" method="POST">
+                                        <input type="hidden" value="<%= p.id %>" name="productId">
+                                        <button class="btn danger" type="submit">Удалить</button>
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    </form>
+                                    <a id="editLink" href="/admin/edit-product/<%= p.id %>?edit=true" class="btn">Изменить</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table> 
+            <% } else { %> 
+                <h1>Нет заготовок!</h1>
+            <% } %>           
+                <div class="centered">
+                    <hr>
+                    <form action="/create-order" method="POST">
+                        <div class="form-control" style="margin: 0 auto;text-align: center;width: 200px; ">
+                            <label for="type">Вид материала</label>
+                            <input type="text" id="type" name="type" required>
+                        </div>
+                        <button type="submit" class="btn">Создать заказ!</button>
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    </form>
+                </div>
+        </main>
+        <%- include('../includes/end.ejs') %>
+        <script src="/js/cart.js"></script>
+        

@@ -1,0 +1,23 @@
+.cart__item-list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart__item-list th,
+.cart__item-list td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.cart__item-list th {
+  background-color: #f2f2f2;
+}
+
+.cart__item-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.cart__item-list tr:hover {
+  background-color: #ddd;
+}

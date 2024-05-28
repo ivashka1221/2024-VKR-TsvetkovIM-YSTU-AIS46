@@ -1,0 +1,32 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/orders.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div id="orders-container">
+        <main>
+            <% if (orders.length <= 0) { %>
+                <h1>Nothing there!</h1>
+            <% } else { %>
+                <div id="statusFilter">
+                    <label for="statusFilterInput">Фильтр по статусу:</label>
+                    <select id="statusFilterInput">   'Shipped', 'Processing', 'Completed', `Cancelled`
+                        <option value="" selected>Все статусы</option>
+                        <option value="Новый">Новый</option>
+                        <option value="Обрабатывается">Обрабатывается</option>
+                        <option value="Выполнен">Выполнен</option>
+                        <option value="Отменен">Отменен</option>
+                    </select>
+                </div>
+                <input type="hidden" id="jsonOrders" value="<%= JSON.stringify(orders) %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div id="ordersContainer">
+                    
+                </div>
+            <% } %>
+        </main>
+    </div>
+    <%- include('../includes/end.ejs') %>
+    <script src="/js/orders.js"></script> <!-- Подключение общего скрипта -->
+</body>
+</html>

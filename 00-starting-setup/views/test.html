@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Карта Раскроя</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        #materialMap {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        svg {
+            display: block;
+            margin: 0 auto;
+        }
+        rect {
+            fill: #f0f0f0;
+            stroke: #000;
+            stroke-width: 1;
+        }
+        text {
+            font-size: 12px;
+            fill: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="materialMap"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    var main = [
+        {
+            "width": 100,
+            "height": 150,
+            "count": 2,
+            "position": 0 // Начальная позиция для первого листа
+        },
+    ];
+    
+    // Функция для создания главного контейнера
+    function createMainContainer(width, height) {
+      var container = document.getElementById('materialMap');
+      container.innerHTML = ''; // Очищаем предыдущие элементы
+
+      // Создаем главный контейнер SVG
+      var mainContainer = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      mainContainer.setAttribute("width", width);
+      mainContainer.setAttribute("height", height);
+
+      // Добавляем главный контейнер в DOM
+      container.appendChild(mainContainer);
+
+      return mainContainer; // Возвращаем главный контейнер для дальнейшего использования
+    }
+
+    // Функция для добавления листов в главный контейнер
+    function addSheetsToMainContainer(main, mainContainer) {
+      var x = 0; // Начальная позиция X
+
+      // Создаем SVG элемент для каждого листа
+      main.forEach(function(sheet) {
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", sheet.width);
+        svg.setAttribute("height", sheet.height);
+        svg.setAttribute("x", x); // Устанавливаем позицию по оси X
+        svg.setAttribute("y", 0); // Устанавливаем позицию по оси Y
+
+        // Добавляем прямоугольник в каждый лист
+        var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("x", 0);
+        rect.setAttribute("y", 0);
+        rect.setAttribute("width", sheet.width);
+        rect.setAttribute("height", sheet.height);
+        rect.setAttribute("fill", "#f0f0f0");
+        rect.setAttribute("stroke", "#000");
+        rect.setAttribute("stroke-width", "1");
+
+        svg.appendChild(rect); // Добавляем прямоугольник в лист
+
+        // Добавляем лист в главный контейнер
+        mainContainer.appendChild(svg);
+
+        // Обновляем позицию для следующего листа
+        x += sheet.width + 10; // Учитываем отступ между листами
+      });
+    }
+
+    // Создаем главный контейнер
+    var mainContainer = createMainContainer(2000, 200);
+
+    // Добавляем листы в главный контейнер
+    addSheetsToMainContainer(main, mainContainer);
+});
+</script>
+</body>
+</html>

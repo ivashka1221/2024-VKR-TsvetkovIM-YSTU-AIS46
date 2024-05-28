@@ -1,0 +1,77 @@
+/* Общие стили */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Стили для контейнера */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Стили для заголовка страницы */
+.page-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Стили для каждого элемента материала */
+.material {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.material:hover {
+  transform: translateY(-5px);
+}
+
+.material h2 {
+  margin: 0;
+  color: #333;
+  font-weight: bold;
+}
+
+.material p {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Стили для кнопок */
+.material button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.material button:hover {
+  background-color: #0056b3;
+}
+
+/* Стили для изображений */
+.material img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}

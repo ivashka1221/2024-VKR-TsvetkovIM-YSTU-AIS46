@@ -1,0 +1,19 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/users.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="container">
+        <h1 class="page-title">Все сотрудники</h1>
+        <% updateUsers.forEach(user => { %>
+         <div class="user-card">
+           <h2><%= user.firstName %> <%= user.lastName %></h2>
+           <p><strong>Email:</strong> <%= user.email %></p>
+           <p><strong>Роль:</strong> <%= user.role %></p>
+           <p><strong>Дата регистрации:</strong> <%= user.registrationDate %></p>
+           <a id="" href="" class="btn">Изменить</a>
+           <a id="" href="" class="btn danger">Удалить</a>
+         </div>
+       <% }); %>
+    </main>
+    <%- include('../includes/end.ejs') %>

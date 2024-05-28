@@ -1,0 +1,21 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/orders-detail.css">
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="container">
+        <h1 class="page-title">Детали заказа</h1>
+        <h2>Вид материала для заготовок <%= type %></h2>
+        <% materials.forEach((material, index) => { %>
+            <div class="material">
+                <h2>Заготовка <%= index + 1 %></h2>
+                <h2>Ширина(мм): <%= material.width %></h2>
+                <h2>Высота(мм): <%= material.height %></h2>
+                <h2>Количество(шт): <%= material.quantity %></h2>
+                <h2>Площадь(м2): <%= material.quantity *  material.width * material.height / 1000000%></h2>
+                <p>Комментарий: <%= material.description %></p>
+            </div>
+        <% }) %>
+    </main>
+    <%- include('../includes/end.ejs') %>

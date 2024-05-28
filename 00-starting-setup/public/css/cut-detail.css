@@ -1,0 +1,55 @@
+
+#materialMap {
+  flex: 1;
+  width: calc(100% - 40px); /* Учитывает отступы слева и справа */
+  height: 100%;
+  border: 1px solid #ccc;
+  margin: 20px 10px; /* Отступы сверху/снизу и слева/справа */
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+.main-sheet-container {
+  display: block;
+  margin: 0 auto;
+  border: 0.5px solid black;
+  background-color: rgb(239, 236, 236); 
+  margin-bottom: 20px;
+}
+.blank {
+  fill: rgb(235, 230, 183);
+  background-color: rgb(235, 230, 183);
+  border: 0.5px solid black;
+  stroke: black;  
+  stroke-width: 0.5;
+}
+.cut-table {
+  border-collapse: collapse; /* Сводит к нулю промежутки между ячейками */
+  width: 100%; /* Занимает всю доступную ширину */
+  margin-bottom: 20px;
+}
+
+.cut-table th, .cut-table td {
+  border: 1px solid black; /* Границы ячеек */
+  padding: 8px; /* Отступ внутри ячеек */
+  text-align: center; /* Выравнивание текста по центру */
+}
+.text-blank {
+  fill: black;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+.textH-blank {
+  fill: black;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+.textW-blank {
+  fill: black;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}

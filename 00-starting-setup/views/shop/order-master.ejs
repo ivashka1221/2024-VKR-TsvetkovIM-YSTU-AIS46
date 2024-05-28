@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs') %>
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+        <main>
+            <% if (orders.length <= 0) { %>
+                <h1>Заказов нет!</h1>
+            <% } else { %>
+                <ul>
+                    <% orders.forEach(order => { %>
+                        <% if(order.status === `Обрабатывается`) { %>
+                        <li>
+                            <h1># <%= order.id %></h1>
+                            <ul>
+                                    <li>
+                                        <h2> Статус: <%= order.status %></h2>
+                                    </li>
+                            </ul>
+                            <a href="/orders/<%= order.id %>" class="btn">Детали заказа</a>
+                            <a href="/cut/<%= order.id %>" class="btn">Создать карту раскрой</a>
+                            <a href="/order-finish/<%= order.id %>" class="btn">Завершить заказ</a>
+                        </li>
+                        <% }  %>
+                    <% }); %>
+                </ul>
+            <% } %>
+        </main>
+        <%- include('../includes/end.ejs') %>

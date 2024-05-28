@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/err.css">
+</head>
+
+<body>
+    <%- include('includes/navigation.ejs') %>
+    
+    <!-- Модальное окно с сообщением об ошибке -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Error</h2>
+            <p><%= errorMessage %></p>
+        </div>
+    </div>
+
+    <!-- Скрипт для отображения модального окна -->
+    <script>
+        // Получение модального окна
+        var modal = document.getElementById("errorModal");
+
+        // Получение кнопки закрытия модального окна
+        var closeButton = document.getElementsByClassName("close")[0];
+
+        // При клике на кнопку закрытия модального окна скрыть его
+        closeButton.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Показать модальное окно при загрузке страницы
+        window.onload = function() {
+            modal.style.display = "block";
+        }
+    </script>
+
+<%- include('includes/end.ejs') %>
